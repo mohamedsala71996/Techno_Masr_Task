@@ -300,6 +300,11 @@
 
                         // Reinitialize any plugins if needed
                         $('[data-bs-toggle="tooltip"]').tooltip();
+                        
+                        // Reinitialize SweetAlert for new delete buttons
+                        if (typeof window.initializeSweetAlert === 'function') {
+                            window.initializeSweetAlert();
+                        }
                     },
                     error: function(xhr) {
                         console.error('Refresh error:', xhr.responseText);

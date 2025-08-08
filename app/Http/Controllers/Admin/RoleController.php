@@ -61,6 +61,12 @@ class RoleController extends BaseController
     public function destroy($id)
     {
         $role = Role::where('guard_name', 'admin')->findOrFail($id);
+        if ($role->users()->exists()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'لا يمكن حذف الدور لأنه مرتبط بمستخدم'
+            ]);
+        }
         $role->delete();
         return response()->json([
             'success' => true,
