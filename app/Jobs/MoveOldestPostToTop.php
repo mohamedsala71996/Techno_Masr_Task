@@ -32,8 +32,11 @@ class MoveOldestPostToTop implements ShouldQueue
 
         Cache::put('top_post_id', $nextPostId, now()->addMinutes(6));
 
-        $nextIndex = ($currentIndex + 1) % count($allPosts);
-        Cache::put('current_post_index', $nextIndex, now()->addMinutes(6));
+        $nextIndex = $currentIndex + 1;
+        if ($nextIndex >= count($allPosts)) {
+            $nextIndex = 0;
+        }
+        Cache::put('current_post_index', $nextIndex, now()->addMinutes(35));
 
         \Log::info("Post {$nextPostId} moved to top (Index: $currentIndex)");
     }
