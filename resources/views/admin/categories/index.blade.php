@@ -252,25 +252,6 @@
                 });
             });
 
-            // Delete category
-            $(document).on('click', '.delete-btn', function(e) {
-                e.preventDefault();
-                var form = $(this).closest('form');
-                if (confirm('هل انت متأكد من حذف هذا القسم وجميع اقسامه الفرعية؟')) {
-                    $.ajax({
-                        url: form.attr('action'),
-                        method: 'POST',
-                        data: form.serialize(),
-                        success: function(response) {
-                            refreshCategoryTable();
-                            toastr.success(response.message);
-                        },
-                        error: function(xhr) {
-                            toastr.error(xhr.responseJSON.message);
-                        }
-                    });
-                }
-            });
 
             // Realtime filter for category search
             function debounce(func, wait) {
@@ -343,4 +324,5 @@
             });
         }
     </script>
+    @include('admin.layouts.partials.delete')
 @endsection

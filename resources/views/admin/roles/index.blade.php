@@ -40,7 +40,7 @@
                                             <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm btn-primary">تعديل</a>
                                             @endcan
                                             @can('delete roles')
-                                            <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
+                                            <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" class="d-inline delete-form">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">حذف</button>
@@ -62,3 +62,8 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+    @include('admin.layouts.partials.delete')
+@endsection
+    

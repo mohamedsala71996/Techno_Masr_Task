@@ -62,6 +62,9 @@ class RoleController extends BaseController
     {
         $role = Role::where('guard_name', 'admin')->findOrFail($id);
         $role->delete();
-        return redirect()->route('admin.roles.index')->with('success', 'تم حذف الدور');
+        return response()->json([
+            'success' => true,
+            'message' => 'تم حذف الدور بنجاح'
+        ]);
     }
 }

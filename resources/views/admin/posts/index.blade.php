@@ -141,8 +141,7 @@
                                                 @endcan
                                                 @can('delete posts')
                                                     <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
-                                                        class="d-inline delete-form"
-                                                        onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
+                                                        class="d-inline delete-form">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"
@@ -168,3 +167,8 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    @include('admin.layouts.partials.delete')
+@endsection
+

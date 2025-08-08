@@ -79,7 +79,10 @@ class PostController extends BaseController
         $post = $this->postService->findPost($id);
         $this->deleteMorphImage($post, 'main_image');
         $this->postService->deletePost($id);
-        return redirect()->route('admin.posts.index')->with('success', 'تم حذف المقال');
+        return response()->json([
+            'success' => true,
+            'message' => 'تم حذف المقال بنجاح'
+        ]);
     }
 
     public function approve($id)

@@ -137,7 +137,7 @@ class CategoryController extends BaseController
         $this->deleteChildren($category);
         $category->delete();
 
-        return response()->json(['message' => 'تم حذف القسم بنجاح!']);
+        return response()->json(['success' => true, 'message' => 'تم حذف القسم بنجاح!']);
     }
 
     private function deleteChildren(Category $category)
